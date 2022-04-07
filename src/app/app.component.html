@@ -1,0 +1,64 @@
+<style>
+  header {
+    background: #333;
+    padding: 1rem 0;
+  }
+  .nav {
+    color: cyan;
+    display: flex;
+    width: 100%;
+    gap: 2%;
+    margin: 0.5rem 1.5rem;
+  }
+  .nav > a {
+    color: cyan;
+  }
+  .content {
+    margin: 0 1rem;
+  }
+  .button-container {
+    margin: 1rem 0;
+    display: flex;
+    gap: 0 1rem;
+  }
+  .url-input {
+    width: 100%;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+</style>
+
+<header>
+  <img src="assets/signoz.svg" height="100px" />
+  <div class="nav">
+    <a target="_blank" href="https://github.com/signoz/signoz">GitHub</a>
+    <a target="_blank" href="https://signoz.io">Docs</a>
+  </div>
+</header>
+
+<div class="content">
+  <input
+    class="url-input"
+    type="text"
+    placeholder="API Endpoint"
+    #inputApiUrl
+    (keyup)="updateApiUrl(inputApiUrl.value)"
+    value="{{ apiUrl }}"
+  />
+  <h5>Methods on the above mentioned API Endpoint 👆</h5>
+  <div class="button-container">
+    <button (click)="apiGET()">GET</button>
+    <button (click)="apiPUT()">PUT</button>
+    <button (click)="apiPOST()">POST</button>
+    <button (click)="apiPATCH()">PATCH</button>
+    <button (click)="apiDELETE()">DELETE</button>
+    <button (click)="api404()">404 Not Found</button>
+  </div>
+  <hr />
+  <div *ngIf="apiResponse">
+    <h3>API Response</h3>
+    <pre>{{ apiResponse }}</pre>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
