@@ -8,7 +8,10 @@ import { UsersService } from './users.service';
 export class AppComponent {
   apiUrl = '';
   apiResponse = '';
-  apiHandler = {};
+  apiHandler = {
+    next: (data: any) => this.setApiResponse(data),
+    error: (error: any) => this.setApiResponse(error),
+  };
   constructor(private user: UsersService) {
     this.apiUrl =
       window.localStorage.getItem('apiUrl') || 'http://localhost:5555';
